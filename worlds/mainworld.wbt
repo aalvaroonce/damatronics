@@ -1,19 +1,1132 @@
 #VRML_SIM R2025a utf8
 
+EXTERNPROTO "../protos/CheckerRobot.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
 
 WorldInfo {
+  title "Robotic Checkers World"
+  basicTimeStep 8
+  contactProperties [
+    ContactProperties {
+      bounce 0.1
+      softCFM 0.0001
+    }
+  ]
 }
 Viewpoint {
-  orientation -0.17036015029668675 0.16245648382280628 0.9718977878639403 1.6467490308024375
-  position 0.38649969623999103 -7.958175489161445 3.434846127494917
+  orientation -0.2662766813683352 0.24059610253889596 0.9333864389429275 1.7403412325520764
+  position 1.4648502540705017 -7.058673418994393 4.835898719734856
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
-  floorSize 5 5
+  floorSize 2 2
+  floorTileSize 2 2
+  floorAppearance PBRAppearance {
+    baseColor 0.5 0.5 0.5
+    roughness 1
+    metalness 0
+  }
+}
+Robot {
+  translation 0 0 0.001
+  children [
+    Emitter {
+      channel 1
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.6 0.4
+        roughness 0.5
+      }
+      geometry Box {
+        size 1.6 1.6 0.01
+      }
+    }
+    Solid {
+      translation -0.7 -0.7 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_0_0"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_0_0"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.3 -0.7 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_2_0"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_2_0"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.1 -0.7 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_4_0"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_4_0"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.5 -0.7 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_6_0"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_6_0"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.5 -0.5 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_1_1"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_1_1"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.1 -0.5 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_3_1"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_3_1"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.3 -0.5 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_5_1"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_5_1"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.7 -0.5 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_7_1"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_7_1"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.7 -0.3 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_0_2"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_0_2"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.3 -0.3 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_2_2"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_2_2"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.1 -0.3 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_4_2"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_4_2"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.5 -0.3 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_6_2"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_6_2"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.5 -0.1 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_1_3"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_1_3"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.1 -0.1 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_3_3"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_3_3"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.3 -0.1 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_5_3"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_5_3"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.7 -0.1 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_7_3"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_7_3"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.7 0.1 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_0_4"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_0_4"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.3 0.1 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_2_4"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_2_4"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.1 0.1 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_4_4"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_4_4"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.5 0.1 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_6_4"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_6_4"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.5 0.3 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_1_5"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_1_5"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.1 0.3 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_3_5"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_3_5"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.3 0.3 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_5_5"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_5_5"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.7 0.3 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_7_5"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_7_5"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.7 0.5 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_0_6"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_0_6"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.3 0.5 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_2_6"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_2_6"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.1 0.5 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_4_6"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_4_6"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.5 0.5 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_6_6"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_6_6"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.5 0.7 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_1_7"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_1_7"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation -0.1 0.7 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_3_7"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_3_7"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.3 0.7 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_5_7"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_5_7"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+    Solid {
+      translation 0.7 0.7 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.1 0.1 0.1
+          }
+          geometry Box {
+            size 0.2 0.2 0.002
+          }
+        }
+        TouchSensor {
+          name "SENSOR_7_7"
+          boundingObject Box {
+            size 0.2 0.2 0.002
+          }
+        }
+      ]
+      name "TILE_7_7"
+      boundingObject Box {
+        size 0.2 0.2 0.002
+      }
+    }
+  ]
+  name "game_supervisor"
+  controller "supervisor_controller"
+  supervisor TRUE
+}
+CheckerRobot {
+  hidden position_0_0 0.006669174077571304
+  hidden position_0_1 0.006669175670247388
+  hidden linearVelocity_0 0.028094983308341464 0.0205558186270451 -0.02782840908063831
+  hidden angularVelocity_0 -0.6791959334226272 0.92832791599666 1.4179834371346406e-05
+  hidden rotation_6 0.9999888806731579 0.0033345500714455044 -0.0033345623199543405 1.5708111193886616
+  hidden linearVelocity_6 0.020113324393679556 0.0148413837843192 -0.0674709677272883
+  hidden angularVelocity_6 -0.5757453778365691 0.8466252031314612 5.2590575997931436e-05
+  hidden rotation_7 0.9999888806678472 0.003334550867762912 -0.003334563116274672 1.5708111193939724
+  hidden linearVelocity_7 0.019776557599038222 0.014595196830583686 0.0025182113426216353
+  hidden angularVelocity_7 -0.5789469059370387 0.8513330276963375 5.288293549948563e-05
+  translation -0.7056348869482805 -0.7094992390721971 0.012047599279612266
+  rotation -0.058181232471405456 0.07849625844989484 -0.9952151936126555 0.009556167254854343
+  name "W_01"
+}
+CheckerRobot {
+  hidden position_0_0 0.0005663652523151053
+  hidden position_0_1 0.0005663823850578999
+  hidden linearVelocity_0 0.023748865910550455 0.008693435553938466 -0.016630037383484134
+  hidden angularVelocity_0 -0.287158877278261 0.7885056590229529 0.0009120716278403279
+  hidden rotation_6 0.9999999198079003 0.00028318157083233943 -0.000283182611018241 1.5708000801921032
+  hidden linearVelocity_6 0.01576926758058409 0.005618769051873456 -0.03510005399474959
+  hidden angularVelocity_6 -0.3031374848730387 0.7911705525709579 0.0008559209727569995
+  hidden rotation_7 0.9999999198030485 0.00028319013717089677 -0.00028319117738826436 1.570800080196955
+  hidden linearVelocity_7 0.015909100815245866 0.005721321780613613 0.0013088605639134023
+  hidden angularVelocity_7 -0.30482095670117226 0.795570054465789 0.0008606776111991863
+  translation -0.30481630521685255 -0.7053168780863103 0.011928922198295416
+  rotation -0.3426288308705593 0.9380049349176917 0.05246166530268338 0.0041473208701744545
+  name "W_02"
+}
+CheckerRobot {
+  hidden position_0_0 -7.591268891739626e-08
+  hidden position_0_1 -7.549805047801783e-08
+  hidden linearVelocity_0 -2.954188867095927e-05 -4.4184279851440316e-05 0.0013448597530144812
+  hidden angularVelocity_0 0.0014732577627015575 -0.0009849538450377498 -7.0810762313651785e-09
+  hidden rotation_6 0.9999999999999987 -3.795620503751599e-08 3.7956344458698096e-08 1.5708000000000013
+  hidden linearVelocity_6 -2.0692307383427174e-05 -3.0693640837502e-05 0.0014257414748611282
+  hidden angularVelocity_6 0.0014651075760224552 -0.0009786865180422466 -6.8287654619182614e-09
+  hidden rotation_7 0.9999999999999987 -3.774888657935139e-08 3.774902523900888e-08 1.5708000000000013
+  hidden linearVelocity_7 -1.870076445431478e-05 -2.8137922889650303e-05 0.0012567974725366205
+  hidden angularVelocity_7 0.0014732581512447494 -0.0009841332082331593 -7.55542823182925e-09
+  translation 0.09389017164365718 -0.7043327872147611 0.012005598303476517
+  rotation -0.6813435700187861 0.44886444261566655 -0.5781796016372271 0.0008412082323858826
+  name "W_03"
+}
+CheckerRobot {
+  hidden position_0_0 -1.282920436551649e-10
+  hidden position_0_1 -2.6501972956492726e-10
+  hidden rotation_6 1 -6.414578620652045e-11 6.414602182758244e-11 1.5708
+  hidden rotation_7 1 -1.3250937804744603e-10 1.3250986478246363e-10 1.5708
+  translation 0.4993610533343679 -0.7004249387746576 0.01199853452329492
+  rotation -0.04504953682618414 0.00022285789190129303 0.9989847293958534 0.0005433843983314781
+  name "W_04"
+}
+CheckerRobot {
+  hidden position_0_0 -3.3731237827353684e-08
+  hidden position_0_1 -2.9081585140033894e-08
+  hidden rotation_6 0.9999999999999999 -1.686555696291316e-08 1.6865618913676845e-08 1.5708
+  hidden rotation_7 0.9999999999999999 -1.4540739158801569e-08 1.4540792570016949e-08 1.5708
+  translation -0.5006856472182237 -0.5044060743337698 0.011998521775452218
+  rotation -0.043195788665634956 -0.00031158913529785135 0.9990665777383229 0.0005577607285153015
+  name "W_05"
+}
+CheckerRobot {
+  hidden position_0_0 -3.265148951214769e-08
+  hidden position_0_1 -2.8084193637312183e-08
+  hidden rotation_6 0.9999999999999999 -1.6325684788375034e-08 1.632574475607385e-08 1.5708
+  hidden rotation_7 0.9999999999999999 -1.4042045239249127e-08 1.4042096818656093e-08 1.5708
+  translation -0.10062578700956343 -0.5003596544060783 0.011998518562420943
+  rotation -0.03859771600624936 -8.356121090109804e-05 0.9992548270269326 0.0006226378855176023
+  name "W_06"
+}
+CheckerRobot {
+  hidden position_0_0 0.002584225883720944
+  hidden position_0_1 0.0025850523074401246
+  hidden linearVelocity_0 -5.920598458175788e-07 -8.600026675828774e-06 0.014116707109140085
+  hidden angularVelocity_0 0.0002878258960666727 -1.987045645764936e-05 -1.3305569690562164e-08
+  hidden rotation_6 0.9999983304526008 0.0012921067575190064 -0.001292111503700859 1.5708016695487927
+  hidden linearVelocity_6 0.00024110848088470824 -0.0005806645426035113 0.009611918069567911
+  hidden angularVelocity_6 -0.04962996365217088 -0.03011480326441689 0.00040338944863189155
+  hidden rotation_7 0.9999983293846042 0.0012925199664806021 -0.001292524714180259 1.5708016706167909
+  hidden linearVelocity_7 0.00015139373972035115 -0.0004498842747211793 0.015629547519332092
+  hidden angularVelocity_7 -0.049906223204518436 -0.030290680916920755 0.00040561883868339937
+  translation 0.2963165196945584 -0.5050645243764643 0.011994462370278916
+  rotation -0.9847745036758695 -0.16535284904681574 -0.05364338003934565 0.005638239729794854
+  name "W_07"
+}
+CheckerRobot {
+  hidden position_0_0 -2.2435655848696e-06
+  hidden position_0_1 -2.24280250904485e-06
+  hidden linearVelocity_0 0.011834043645377223 0.011837544391153119 -0.002523063402869406
+  hidden angularVelocity_0 -0.3946554701405695 0.39454224687981576 9.854067418553808e-06
+  hidden rotation_6 0.9999999999987418 -1.121778671903149e-06 1.1217827924338592e-06 1.5708000000012583
+  hidden linearVelocity_6 0.007843321974292366 0.007846183904648477 -0.026034689742143968
+  hidden angularVelocity_6 -0.39247303163503205 0.39238464202927287 9.818650346997053e-06
+  hidden rotation_7 0.9999999999987426 -1.121397135392239e-06 1.121401254521485e-06 1.5708000000012574
+  hidden linearVelocity_7 0.007880367576717444 0.007882239057673535 0.021161680800530883
+  hidden angularVelocity_7 -0.39465545804102226 0.3945666198950546 9.873297642954298e-06
+  translation 0.6972724551177254 -0.508130685431667 0.011986896389538437
+  rotation -0.7030752913785708 0.7022918923968379 -0.11167467271770219 0.003518580819789089
+  name "W_08"
+}
+CheckerRobot {
+  hidden position_0_0 -0.0007578679711974239
+  hidden position_0_1 -0.000757905357454014
+  hidden linearVelocity_0 -0.004322765066032718 -0.004926771622723108 0.0015364865983511404
+  hidden angularVelocity_0 0.1637779459088578 -0.14369551633693756 -3.732071443526737e-06
+  hidden rotation_6 0.9999998564095792 -0.0003789325574250254 0.0003789339493245856 1.5708001435904313
+  hidden linearVelocity_6 -0.0028566334306056036 -0.003255354358441379 0.01124126472825406
+  hidden angularVelocity_6 0.16240756320794159 -0.1347086563972007 -2.8070786436463583e-05
+  hidden rotation_7 0.999999856395412 -0.0003789512504792883 0.00037895264244751196 1.5708001436045984
+  hidden linearVelocity_7 -0.0029050467134950227 -0.003309736710121891 -0.008270405189675159
+  hidden angularVelocity_7 0.1633106847659299 -0.13545734480626215 -2.822814765763753e-05
+  translation -0.7040196151050567 -0.3066760890470479 0.012107122912278018
+  rotation -0.6880455610217029 0.5975350698795864 0.41175860188018903 0.0029679467558315176
+  name "W_09"
+}
+CheckerRobot {
+  hidden position_0_0 -0.0014775015738477393
+  hidden position_0_1 -0.0014775039142378432
+  hidden linearVelocity_0 -0.0001497877622581027 -0.0001469284182967456 0.008256288018478187
+  hidden angularVelocity_0 0.004887618733583064 -0.0049827628318971345 -3.3977659883002594e-08
+  hidden rotation_6 0.9999994542495277 -0.0007387478045647968 0.0007387505181419865 1.5708005457506216
+  hidden linearVelocity_6 -0.0001206517596628596 -0.00011776200110743148 0.00849202928997517
+  hidden angularVelocity_6 0.004689011560013826 0.011015892568323662 -7.120361093241872e-06
+  hidden rotation_7 0.9999994542477989 -0.0007387489747542735 0.0007387516883357614 1.5708005457523502
+  hidden linearVelocity_7 -8.721988988356845e-05 -8.666264148251247e-05 0.007966798039241073
+  hidden angularVelocity_7 0.004715080226036297 0.01107717143795595 -7.159682312619033e-06
+  translation -0.3107100379047703 -0.30418462971959465 0.012132249744883868
+  rotation -0.7551141717747869 0.6542422092648152 0.042068030631004255 0.005123712472425535
+  name "W_10"
+}
+CheckerRobot {
+  hidden position_0_0 -2.2548936939870146e-08
+  hidden position_0_1 -2.8486704550800823e-08
+  hidden rotation_6 0.9999999999999999 -1.1274427056576013e-08 1.1274468469935073e-08 1.5708
+  hidden rotation_7 0.9999999999999999 -1.4243299956742233e-08 1.4243352275400413e-08 1.5708
+  translation 0.0950526120440174 -0.3039358340944558 0.01199851862642035
+  rotation -0.02450471638955281 -0.0002887150186846259 0.9996996726608974 0.0009808114273732594
+  name "W_11"
+}
+CheckerRobot {
+  hidden position_0_0 -0.0006530335679091337
+  hidden position_0_1 -0.0005025257906678959
+  hidden linearVelocity_0 -6.008553302821814e-06 0.0001575744367194011 0.0012687435171090558
+  hidden angularVelocity_0 -0.005255690547108535 -0.0002004042695301464 -5.004049202578375e-09
+  hidden rotation_6 0.999999893387191 -0.0003265155613865329 0.0003265167607473621 1.5708001066128146
+  hidden linearVelocity_6 -2.1102186182092413e-05 0.00010479023510040584 0.0009076989926937722
+  hidden angularVelocity_6 -0.00479571160099198 0.006859902997161109 -1.8849690411881012e-06
+  hidden rotation_7 0.9999999368671927 -0.000251261961820264 0.00025126288475867955 1.5708000631328092
+  hidden linearVelocity_7 -2.0273395542646607e-05 0.00011450206334209743 0.0014942909053209147
+  hidden angularVelocity_7 -0.004823933892657754 0.00526229947374722 -5.520195991400728e-06
+  translation 0.4971326174079402 -0.30696140018294593 0.011996483693157537
+  rotation 0.4386548988664791 0.05675858036329395 -0.8968613846384415 0.001086133130854384
+  name "W_12"
+}
+CheckerRobot {
+  hidden position_0_0 -0.0019416776944709388
+  hidden position_0_1 -0.00194159787284498
+  hidden linearVelocity_0 -0.00855508496532229 0.01152046418759977 0.0069041586975874545
+  hidden angularVelocity_0 -0.38399611244541954 -0.2851557986719777 -8.044571025808135e-06
+  hidden rotation_6 0.9999990574761352 -0.0009708346711293838 0.0009708382372108018 1.570800942524309
+  hidden linearVelocity_6 -0.0057517116168982006 0.007729780834646751 -0.01591965082146254
+  hidden angularVelocity_6 -0.37798140286568666 -0.26257435180899746 4.140617955641052e-05
+  hidden rotation_7 0.9999990575536272 -0.0009707947605382352 0.0009707983264730531 1.570800942446817
+  hidden linearVelocity_7 -0.005700804910906145 0.007662382451516412 0.02953571212554473
+  hidden angularVelocity_7 -0.3800831116550658 -0.26403535576132575 4.162006551794663e-05
+  translation -0.5042973570841128 0.29709053529580265 0.012069142548059866
+  rotation 0.5465267590918669 0.41119040991900335 -0.7295416015466031 0.0010015596337800906
+  name "B_01"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 4.127728212534247e-06
+  hidden position_0_1 4.1276467539264895e-06
+  hidden linearVelocity_0 1.4129695739842352e-05 3.0110554642333656e-05 0.012537436729265536
+  hidden angularVelocity_0 -0.0010647743551306932 0.0005460728891404365 5.28711111328143e-06
+  hidden rotation_6 0.9999999999957405 2.063856525279018e-06 -2.063864106261263e-06 1.5708000000042595
+  hidden linearVelocity_6 -3.352609113874819e-05 -1.5371801012764766e-05 0.012400685766027108
+  hidden angularVelocity_6 -0.001059210334200881 0.0004982804964072639 5.105859006780491e-06
+  hidden rotation_7 0.9999999999957407 2.063815796124747e-06 -2.0638233769573845e-06 1.5708000000042595
+  hidden linearVelocity_7 3.3232103310267685e-05 3.946458438050353e-05 0.012604950975143338
+  hidden angularVelocity_7 -0.0010651759562317342 0.0005012005773312733 5.133056509405624e-06
+  translation -0.10663447930534133 0.2920701631329574 0.01194732291723866
+  rotation 0.5204753343222486 -0.6256101374698207 -0.5811345646725343 0.005447297030863707
+  name "B_02"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 -3.37508429412183e-06
+  hidden position_0_1 -3.375059905330602e-06
+  hidden linearVelocity_0 -6.49085874438507e-05 -2.3347245297836526e-05 0.008741921385428359
+  hidden angularVelocity_0 0.0007789904556394398 -0.0021656482405291223 -1.2740474657343604e-08
+  hidden rotation_6 0.9999999999971524 -1.6875359483806694e-06 1.6875421470577116e-06 1.5708000000028477
+  hidden linearVelocity_6 -5.269030892860015e-05 -2.3798330508871778e-05 0.008748615817885984
+  hidden angularVelocity_6 0.0007745503081642731 -0.002117190006593694 -2.4076498868080457e-07
+  hidden rotation_7 0.9999999999971524 -1.6875237540298479e-06 1.6875299526620974e-06 1.5708000000028477
+  hidden linearVelocity_7 -3.37853494643426e-05 -7.412069719678169e-06 0.00869906776369364
+  hidden angularVelocity_7 0.000778856334290615 -0.002128963500071639 -2.420173020606225e-07
+  translation 0.29397461312703477 0.29446168349958673 0.01204510167446184
+  rotation -0.4850956340276827 0.5729301316399014 0.6606309787667893 0.005520999193315522
+  name "B_03"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 -4.3503689539647894e-10
+  hidden position_0_1 2.1764060382156003e-10
+  hidden rotation_6 1 -2.1751764870983473e-10 2.175184476982395e-10 1.5708
+  hidden rotation_7 1 1.0881990219222581e-10 -1.0882030191078003e-10 1.5708
+  translation 0.698282511947276 0.2982777753431964 0.011998509500887447
+  rotation -0.0017924325052986088 -5.2279057099486394e-06 0.9999983935779011 0.013475716343172055
+  name "B_04"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 -0.0034266967218909983
+  hidden position_0_1 -0.0034266847777351117
+  hidden linearVelocity_0 -4.8679954786479316e-05 -6.990598157392188e-05 0.01569467529418365
+  hidden angularVelocity_0 0.0023260079866360282 -0.0016197986161157747 2.5734990591788994e-08
+  hidden rotation_6 0.999997064455358 -0.0017133387144230034 0.0017133450078790718 1.5708029355489506
+  hidden linearVelocity_6 -0.0002663406314359836 -0.0006636080409587658 0.010494980997960196
+  hidden angularVelocity_6 -0.05674498883830765 0.03772297342709064 -7.141429399252594e-05
+  hidden rotation_7 0.9999970644758223 -0.001713332742402059 0.0017133390358361907 1.5708029355284863
+  hidden linearVelocity_7 -0.0002657031073399182 -0.0006137226595667589 0.01737959457026097
+  hidden angularVelocity_7 -0.057060574597066795 0.03793261435289845 -7.180572618024255e-05
+  translation -0.7054417913228112 0.49266258780562594 0.012180572748384584
+  rotation -0.7612769507903404 0.6429068955880407 0.08442824054017557 0.00865673594148162
+  name "B_05"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 2.965340610320469e-08
+  hidden position_0_1 3.009468430166716e-08
+  hidden linearVelocity_0 0.0008541128818090793 0.012450495309900625 0.003218443523494339
+  hidden angularVelocity_0 -0.41522417885365187 0.028484797540283102 1.1796952396278125e-06
+  hidden rotation_6 0.9999999999999999 1.4826648590181055e-08 -1.4826703051602346e-08 1.5708
+  hidden linearVelocity_6 0.0005661598751658149 0.008253318148300243 -0.02155259759820396
+  hidden angularVelocity_6 -0.4129270728553386 0.02832764357425376 1.1647306520695432e-06
+  hidden rotation_7 0.9999999999999999 1.5047286878961114e-08 -1.504734215083358e-08 1.5708
+  hidden linearVelocity_7 0.0005685116915507086 0.008287213499428295 0.02813485128983053
+  hidden angularVelocity_7 -0.41522323634998737 0.02848516914675332 1.1731859702639996e-06
+  translation -0.3041279058831343 0.4966134687324831 0.012023037793023134
+  rotation -0.47855743867752165 0.03187751172291877 -0.8774774083318415 0.0042463140273204395
+  name "B_06"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 -0.005504966781578524
+  hidden position_0_1 -0.0055049645460121255
+  hidden linearVelocity_0 -3.088434587996581e-05 1.1677722781975283e-05 0.024904659347855056
+  hidden angularVelocity_0 -0.0003928249420233883 -0.0010387533193004477 9.231890674945996e-08
+  hidden rotation_6 0.9999924239108431 -0.0027524593784209635 0.0027524694887873682 1.5708075761178553
+  hidden linearVelocity_6 -0.0012180208580055397 0.00017395843262541416 0.022212063625625104
+  hidden angularVelocity_6 0.01833192383806836 0.05858865370621795 -0.00024832529199542716
+  hidden rotation_7 0.9999924239169964 -0.0027524582606588068 0.0027524683710211054 1.5708075761117022
+  hidden linearVelocity_7 -0.001263779610066847 0.0002244641894566754 0.02012863397293821
+  hidden angularVelocity_7 0.018433703742804276 0.058914412750140865 -0.0002497030803452361
+  translation 0.0944356070218424 0.49735099545467654 0.011920476140267817
+  rotation -0.02580758368428866 0.9756473045969751 -0.21782172907457054 0.009242026218029779
+  name "B_07"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 0.0009313774117109647
+  hidden position_0_1 0.0009313770605134397
+  hidden linearVelocity_0 -0.005632620178228386 0.012598446158301064 0.007623161513895055
+  hidden angularVelocity_0 -0.4200360600607369 -0.18779370855046518 -5.241304872224854e-06
+  hidden rotation_6 0.999999783134865 0.000465686927961103 -0.000465688638527845 1.5708002168651585
+  hidden linearVelocity_6 -0.0037539841126322383 0.008424546115332603 -0.017524743181277763
+  hidden angularVelocity_6 -0.4177478555803923 -0.19682284354749152 -4.433954741885859e-05
+  hidden rotation_7 0.9999997831350286 0.0004656867523630617 -0.0004656884629291587 1.570800216864995
+  hidden linearVelocity_7 -0.003703477062665074 0.008313640981605837 0.03277354330019077
+  hidden angularVelocity_7 -0.42007082623393227 -0.19791733654127824 -4.4586205680517156e-05
+  translation 0.49523368421015435 0.4940498705500865 0.012067202922749164
+  rotation 0.5061281569037985 0.22832290566422694 0.831686803753798 0.0012350224547827422
+  name "B_08"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 0.004374918463837715
+  hidden position_0_1 0.004374916842861799
+  hidden linearVelocity_0 8.310532860527519e-06 2.7033411322827642e-05 0.024716968872566508
+  hidden angularVelocity_0 -0.0009124404718539036 0.00027993928945524264 -2.8066431140326767e-08
+  hidden rotation_6 0.9999952150587644 0.0021874442190802893 -0.002187452254026315 1.5708047849526834
+  hidden linearVelocity_6 -1.3712314169401156e-05 0.0013210492795734093 0.02966758313294082
+  hidden angularVelocity_6 0.13460426150307703 0.05387463191039807 0.0006144751545771759
+  hidden rotation_7 0.9999952150623104 0.002187443408603065 -0.0021874514435461134 1.5708047849491376
+  hidden linearVelocity_7 3.292511087325807e-05 0.0014272860877223325 0.013630831480390437
+  hidden angularVelocity_7 0.1353527536865481 0.05417422232072574 0.0006178919729832159
+  translation -0.5080030560196717 0.6931851741814764 0.011887764809802272
+  rotation 0.831745538012197 -0.37110692988566013 -0.41289103476297556 0.009378206280648166
+  name "B_09"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 4.359017335265748e-05
+  hidden position_0_1 4.359029075454579e-05
+  hidden linearVelocity_0 0.007352415397209974 0.008411697736420467 0.010301689270279472
+  hidden angularVelocity_0 -0.28054916493599746 0.2452194884729851 5.927399470007067e-06
+  hidden rotation_6 0.999999999524976 2.179500661175008e-05 -2.1795086669426624e-05 1.570800000475024
+  hidden linearVelocity_6 0.004912557697057177 0.005594854513411177 -0.0066413204629402756
+  hidden angularVelocity_6 -0.28035019274744727 0.24440915268634875 7.776722678220592e-06
+  hidden rotation_7 0.9999999995249733 2.1795065312478557e-05 -2.1795145370370723e-05 1.5708000004750267
+  hidden linearVelocity_7 0.004876722801605214 0.0055515021313062305 0.02719812789248271
+  hidden angularVelocity_7 -0.2819091489646468 0.2457682710193207 7.818722676980946e-06
+  translation -0.103987418435429 0.6960142938443004 0.01207798207035652
+  rotation 0.47720991077336944 -0.418570039713591 -0.77270293315985 0.0033216238397724344
+  name "B_10"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 0.00021592297008905987
+  hidden position_0_1 0.00021586659703062497
+  hidden linearVelocity_0 -0.014697919042925412 -0.020126207418445327 -0.0504231455975289
+  hidden angularVelocity_0 0.8392096568123535 -0.5545207282654828 -0.06747382013976466
+  hidden rotation_6 0.9999999883443607 0.00010796108764167829 -0.00010796148420562471 1.5708000116556395
+  hidden linearVelocity_6 -0.007264444092988599 -0.011593717642010927 1.385083966815703e-05
+  hidden angularVelocity_6 0.834559408306796 -0.5250975836156248 -0.06197545372310258
+  hidden rotation_7 0.999999988350446 0.00010793290121665245 -0.00010793329767706415 1.5708000116495542
+  hidden linearVelocity_7 -0.014874115740253057 -0.011804580886863151 -0.1007836974880484
+  hidden angularVelocity_7 0.8392001400973532 -0.5280256853814864 -0.062320089882476885
+  translation 0.29036134726799373 0.6909183764263166 0.011710943228103766
+  rotation 0.8275200527023807 -0.5565863624117736 -0.07363547754091594 0.005887737540278718
+  name "B_11"
+  color 0.1 0.1 0.1
+}
+CheckerRobot {
+  hidden position_0_0 0.006669174077571304
+  hidden position_0_1 0.006669175670247388
+  hidden linearVelocity_0 0.028094983308341464 0.0205558186270451 -0.02782840908063831
+  hidden angularVelocity_0 -0.6791959334226272 0.92832791599666 1.4179834371346406e-05
+  hidden rotation_6 0.9999888806731579 0.0033345500714455044 -0.0033345623199543405 1.5708111193886616
+  hidden linearVelocity_6 0.020113324393679556 0.0148413837843192 -0.0674709677272883
+  hidden angularVelocity_6 -0.5757453778365691 0.8466252031314612 5.2590575997931436e-05
+  hidden rotation_7 0.9999888806678472 0.003334550867762912 -0.003334563116274672 1.5708111193939724
+  hidden linearVelocity_7 0.019776557599038222 0.014595196830583686 0.0025182113426216353
+  hidden angularVelocity_7 -0.5789469059370387 0.8513330276963375 5.288293549948563e-05
+  translation 0.6943651130517194 0.6905007609278028 0.012047599279612266
+  rotation -0.058181232471405456 0.07849625844989484 -0.9952151936126555 0.009556167254854343
+  name "B_12"
+  color 0.1 0.1 0.1
 }
