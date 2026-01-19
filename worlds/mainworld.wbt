@@ -15,8 +15,8 @@ WorldInfo {
   ]
 }
 Viewpoint {
-  orientation -0.4622867986265633 0.4793567748989846 0.7459946368265978 1.8248035261686981
-  position -0.12743753467085112 -2.908396909781395 5.346993921565273
+  orientation -0.3437237703046832 0.35198723480174327 0.8706083828359085 1.685359632068023
+  position -0.13808175228042807 -4.855241129058731 4.480649858534569
 }
 TexturedBackground {
 }
@@ -46,12 +46,13 @@ Robot {
         size 1.6 1.6 0.01
       }
     }
-    Solid {
+    DEF TILE_0_0 Solid {
       translation -0.7 -0.7 0.01
       children [
-        Shape {
+        DEF TILE_SHAPE Shape {
           appearance PBRAppearance {
             baseColor 0.1 0.1 0.1
+            roughness 0.8
           }
           geometry Box {
             size 0.2 0.2 0.002
@@ -59,767 +60,497 @@ Robot {
         }
         TouchSensor {
           name "SENSOR_0_0"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_0_0"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_2_0 Solid {
       translation -0.3 -0.7 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_2_0"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_2_0"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_4_0 Solid {
       translation 0.1 -0.7 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_4_0"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_4_0"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_6_0 Solid {
       translation 0.5 -0.7 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_6_0"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_6_0"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_1_1 Solid {
       translation -0.5 -0.5 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_1_1"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_1_1"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_3_1 Solid {
       translation -0.1 -0.5 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_3_1"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_3_1"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_5_1 Solid {
       translation 0.3 -0.5 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_5_1"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_5_1"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_7_1 Solid {
       translation 0.7 -0.5 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_7_1"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_7_1"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_0_2 Solid {
       translation -0.7 -0.3 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_0_2"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_0_2"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_2_2 Solid {
       translation -0.3 -0.3 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_2_2"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_2_2"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_4_2 Solid {
       translation 0.1 -0.3 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_4_2"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_4_2"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_6_2 Solid {
       translation 0.5 -0.3 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_6_2"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_6_2"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_1_3 Solid {
       translation -0.5 -0.1 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_1_3"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_1_3"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_3_3 Solid {
       translation -0.1 -0.1 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_3_3"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_3_3"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_5_3 Solid {
       translation 0.3 -0.1 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_5_3"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_5_3"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_7_3 Solid {
       translation 0.7 -0.1 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_7_3"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_7_3"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_0_4 Solid {
       translation -0.7 0.1 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_0_4"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_0_4"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_2_4 Solid {
       translation -0.3 0.1 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_2_4"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_2_4"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_4_4 Solid {
       translation 0.1 0.1 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_4_4"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_4_4"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_6_4 Solid {
       translation 0.5 0.1 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_6_4"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_6_4"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_1_5 Solid {
       translation -0.5 0.3 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_1_5"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_1_5"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_3_5 Solid {
       translation -0.1 0.3 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_3_5"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_3_5"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_5_5 Solid {
       translation 0.3 0.3 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_5_5"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_5_5"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_7_5 Solid {
       translation 0.7 0.3 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_7_5"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_7_5"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_0_6 Solid {
       translation -0.7 0.5 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_0_6"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_0_6"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_2_6 Solid {
       translation -0.3 0.5 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_2_6"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_2_6"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_4_6 Solid {
       translation 0.1 0.5 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_4_6"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_4_6"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_6_6 Solid {
       translation 0.5 0.5 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_6_6"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_6_6"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_1_7 Solid {
       translation -0.5 0.7 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_1_7"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_1_7"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_3_7 Solid {
       translation -0.1 0.7 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_3_7"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_3_7"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_5_7 Solid {
       translation 0.3 0.7 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_5_7"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_5_7"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
-    Solid {
+    DEF TILE_7_7 Solid {
       translation 0.7 0.7 0.01
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0.1 0.1 0.1
-          }
-          geometry Box {
-            size 0.2 0.2 0.002
-          }
-        }
+        USE TILE_SHAPE
         TouchSensor {
           name "SENSOR_7_7"
-          boundingObject Box {
-            size 0.2 0.2 0.002
-          }
+          boundingObject USE TILE_SHAPE
         }
       ]
       name "TILE_7_7"
-      boundingObject Box {
-        size 0.2 0.2 0.002
-      }
+      boundingObject USE TILE_SHAPE
     }
   ]
   name "game_supervisor"
   controller "supervisor_controller"
   supervisor TRUE
 }
-
-# --- EQUIPO BLANCO (Filas 0, 1, 2 - Color 1 1 1) ---
-CheckerRobot { translation -0.7 -0.7 0.05 name "W_01" color 1 1 1 }
-CheckerRobot { translation -0.3 -0.7 0.05 name "W_02" color 1 1 1 }
-CheckerRobot { translation  0.1 -0.7 0.05 name "W_03" color 1 1 1 }
-CheckerRobot { translation  0.5 -0.7 0.05 name "W_04" color 1 1 1 }
-
-CheckerRobot { translation -0.5 -0.5 0.05 name "W_05" color 1 1 1 }
-CheckerRobot { translation -0.1 -0.5 0.05 name "W_06" color 1 1 1 }
-CheckerRobot { translation  0.3 -0.5 0.05 name "W_07" color 1 1 1 }
-CheckerRobot { translation  0.7 -0.5 0.05 name "W_08" color 1 1 1 }
-
-CheckerRobot { translation -0.7 -0.3 0.05 name "W_09" color 1 1 1 }
-CheckerRobot { translation -0.3 -0.3 0.05 name "W_10" color 1 1 1 }
-CheckerRobot { translation  0.1 -0.3 0.05 name "W_11" color 1 1 1 }
-CheckerRobot { translation  0.5 -0.3 0.05 name "W_12" color 1 1 1 }
-
-# --- EQUIPO NEGRO (Filas 5, 6, 7 - Color 0.1 0.1 0.1) ---
-CheckerRobot { translation -0.5 0.3 0.05 name "B_01" color 0.1 0.1 0.1 }
-CheckerRobot { translation -0.1 0.3 0.05 name "B_02" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.3 0.3 0.05 name "B_03" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.7 0.3 0.05 name "B_04" color 0.1 0.1 0.1 }
-
-CheckerRobot { translation -0.7 0.5 0.05 name "B_05" color 0.1 0.1 0.1 }
-CheckerRobot { translation -0.3 0.5 0.05 name "B_06" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.1 0.5 0.05 name "B_07" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.5 0.5 0.05 name "B_08" color 0.1 0.1 0.1 }
-
-CheckerRobot { translation -0.5 0.7 0.05 name "B_09" color 0.1 0.1 0.1 }
-CheckerRobot { translation -0.1 0.7 0.05 name "B_10" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.3 0.7 0.05 name "B_11" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.7 0.7 0.05 name "B_12" color 0.1 0.1 0.1 }
-
+DEF W_01 CheckerRobot {
+  translation -0.7 -0.7 0.05
+  name "W_01"
+}
+DEF W_02 CheckerRobot {
+  translation -0.3 -0.7 0.05
+  name "W_02"
+}
+DEF W_03 CheckerRobot {
+  translation 0.1 -0.7 0.05
+  name "W_03"
+}
+DEF W_04 CheckerRobot {
+  translation 0.5 -0.7 0.05
+  name "W_04"
+}
+DEF W_05 CheckerRobot {
+  translation -0.5 -0.5 0.05
+  name "W_05"
+}
+DEF W_06 CheckerRobot {
+  translation -0.1 -0.5 0.05
+  name "W_06"
+}
+DEF W_07 CheckerRobot {
+  translation 0.3 -0.5 0.05
+  name "W_07"
+}
+DEF W_08 CheckerRobot {
+  translation 0.7 -0.5 0.05
+  name "W_08"
+}
+DEF W_09 CheckerRobot {
+  translation -0.7 -0.3 0.05
+  name "W_09"
+}
+DEF W_10 CheckerRobot {
+  translation -0.3 -0.3 0.05
+  name "W_10"
+}
+DEF W_11 CheckerRobot {
+  translation 0.1 -0.3 0.05
+  name "W_11"
+}
+DEF W_12 CheckerRobot {
+  translation 0.5 -0.3 0.05
+  name "W_12"
+}
+DEF B_01 CheckerRobot {
+  translation -0.5 0.3 0.05
+  name "B_01"
+  color 0.1 0.1 0.1
+}
+DEF B_02 CheckerRobot {
+  translation -0.1 0.3 0.05
+  name "B_02"
+  color 0.1 0.1 0.1
+}
+DEF B_03 CheckerRobot {
+  translation 0.3 0.3 0.05
+  name "B_03"
+  color 0.1 0.1 0.1
+}
+DEF B_04 CheckerRobot {
+  translation 0.7 0.3 0.05
+  name "B_04"
+  color 0.1 0.1 0.1
+}
+DEF B_05 CheckerRobot {
+  translation -0.7 0.5 0.05
+  name "B_05"
+  color 0.1 0.1 0.1
+}
+DEF B_06 CheckerRobot {
+  translation -0.3 0.5 0.05
+  name "B_06"
+  color 0.1 0.1 0.1
+}
+DEF B_07 CheckerRobot {
+  translation 0.1 0.5 0.05
+  name "B_07"
+  color 0.1 0.1 0.1
+}
+DEF B_08 CheckerRobot {
+  translation 0.5 0.5 0.05
+  name "B_08"
+  color 0.1 0.1 0.1
+}
+DEF B_09 CheckerRobot {
+  translation -0.5 0.7 0.05
+  name "B_09"
+  color 0.1 0.1 0.1
+}
+DEF B_10 CheckerRobot {
+  translation -0.1 0.7 0.05
+  name "B_10"
+  color 0.1 0.1 0.1
+}
+DEF B_11 CheckerRobot {
+  translation 0.3 0.7 0.05
+  name "B_11"
+  color 0.1 0.1 0.1
+}
+DEF B_12 CheckerRobot {
+  translation 0.7 0.7 0.05
+  name "B_12"
+  color 0.1 0.1 0.1
+}
 Robot {
   translation -0.51 1.3 0.5
   rotation 0.5013998983075324 0.8651872014142286 -0.007017726570001851 0.0001916173753453163
@@ -864,7 +595,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0 0.06 0.02
-        rotation 1 3.659261422628202e-15 -3.65927486387062e-15 1.5708
+        rotation 1 7.318522845256404e-15 -7.31854972774124e-15 1.5708
         children [
           DEF W Shape {
             appearance PBRAppearance {
@@ -897,7 +628,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0 -0.06 0.02
-        rotation 1 3.609826246783253e-15 -3.609839506439797e-15 1.5708
+        rotation 1 7.219652493566506e-15 -7.219679012879594e-15 1.5708
         children [
           USE W
         ]
