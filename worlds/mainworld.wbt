@@ -64,7 +64,6 @@ Robot {
         }
       ]
       name "TILE_0_0"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_2_0 Solid {
       translation -0.3 -0.7 0.01
@@ -76,7 +75,6 @@ Robot {
         }
       ]
       name "TILE_2_0"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_4_0 Solid {
       translation 0.1 -0.7 0.01
@@ -88,7 +86,6 @@ Robot {
         }
       ]
       name "TILE_4_0"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_6_0 Solid {
       translation 0.5 -0.7 0.01
@@ -100,7 +97,6 @@ Robot {
         }
       ]
       name "TILE_6_0"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_1_1 Solid {
       translation -0.5 -0.5 0.01
@@ -112,7 +108,6 @@ Robot {
         }
       ]
       name "TILE_1_1"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_3_1 Solid {
       translation -0.1 -0.5 0.01
@@ -124,7 +119,6 @@ Robot {
         }
       ]
       name "TILE_3_1"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_5_1 Solid {
       translation 0.3 -0.5 0.01
@@ -136,7 +130,6 @@ Robot {
         }
       ]
       name "TILE_5_1"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_7_1 Solid {
       translation 0.7 -0.5 0.01
@@ -148,7 +141,6 @@ Robot {
         }
       ]
       name "TILE_7_1"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_0_2 Solid {
       translation -0.7 -0.3 0.01
@@ -160,7 +152,6 @@ Robot {
         }
       ]
       name "TILE_0_2"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_2_2 Solid {
       translation -0.3 -0.3 0.01
@@ -172,7 +163,6 @@ Robot {
         }
       ]
       name "TILE_2_2"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_4_2 Solid {
       translation 0.1 -0.3 0.01
@@ -184,7 +174,6 @@ Robot {
         }
       ]
       name "TILE_4_2"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_6_2 Solid {
       translation 0.5 -0.3 0.01
@@ -196,7 +185,6 @@ Robot {
         }
       ]
       name "TILE_6_2"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_1_3 Solid {
       translation -0.5 -0.1 0.01
@@ -208,7 +196,6 @@ Robot {
         }
       ]
       name "TILE_1_3"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_3_3 Solid {
       translation -0.1 -0.1 0.01
@@ -220,7 +207,6 @@ Robot {
         }
       ]
       name "TILE_3_3"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_5_3 Solid {
       translation 0.3 -0.1 0.01
@@ -232,7 +218,6 @@ Robot {
         }
       ]
       name "TILE_5_3"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_7_3 Solid {
       translation 0.7 -0.1 0.01
@@ -244,7 +229,6 @@ Robot {
         }
       ]
       name "TILE_7_3"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_0_4 Solid {
       translation -0.7 0.1 0.01
@@ -256,7 +240,6 @@ Robot {
         }
       ]
       name "TILE_0_4"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_2_4 Solid {
       translation -0.3 0.1 0.01
@@ -268,7 +251,6 @@ Robot {
         }
       ]
       name "TILE_2_4"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_4_4 Solid {
       translation 0.1 0.1 0.01
@@ -280,7 +262,6 @@ Robot {
         }
       ]
       name "TILE_4_4"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_6_4 Solid {
       translation 0.5 0.1 0.01
@@ -292,7 +273,6 @@ Robot {
         }
       ]
       name "TILE_6_4"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_1_5 Solid {
       translation -0.5 0.3 0.01
@@ -304,7 +284,6 @@ Robot {
         }
       ]
       name "TILE_1_5"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_3_5 Solid {
       translation -0.1 0.3 0.01
@@ -316,7 +295,6 @@ Robot {
         }
       ]
       name "TILE_3_5"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_5_5 Solid {
       translation 0.3 0.3 0.01
@@ -328,7 +306,6 @@ Robot {
         }
       ]
       name "TILE_5_5"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_7_5 Solid {
       translation 0.7 0.3 0.01
@@ -340,7 +317,6 @@ Robot {
         }
       ]
       name "TILE_7_5"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_0_6 Solid {
       translation -0.7 0.5 0.01
@@ -352,7 +328,6 @@ Robot {
         }
       ]
       name "TILE_0_6"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_2_6 Solid {
       translation -0.3 0.5 0.01
@@ -364,7 +339,6 @@ Robot {
         }
       ]
       name "TILE_2_6"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_4_6 Solid {
       translation 0.1 0.5 0.01
@@ -376,7 +350,6 @@ Robot {
         }
       ]
       name "TILE_4_6"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_6_6 Solid {
       translation 0.5 0.5 0.01
@@ -388,7 +361,6 @@ Robot {
         }
       ]
       name "TILE_6_6"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_1_7 Solid {
       translation -0.5 0.7 0.01
@@ -400,7 +372,6 @@ Robot {
         }
       ]
       name "TILE_1_7"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_3_7 Solid {
       translation -0.1 0.7 0.01
@@ -412,7 +383,6 @@ Robot {
         }
       ]
       name "TILE_3_7"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_5_7 Solid {
       translation 0.3 0.7 0.01
@@ -424,7 +394,6 @@ Robot {
         }
       ]
       name "TILE_5_7"
-      boundingObject USE TILE_SHAPE
     }
     DEF TILE_7_7 Solid {
       translation 0.7 0.7 0.01
@@ -436,7 +405,6 @@ Robot {
         }
       ]
       name "TILE_7_7"
-      boundingObject USE TILE_SHAPE
     }
   ]
   name "game_supervisor"
@@ -595,7 +563,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0 0.06 0.02
-        rotation 1 7.318522845256404e-15 -7.31854972774124e-15 1.5708
+        rotation 1 1.0977784267884605e-14 -1.0977824591611862e-14 1.5708
         children [
           DEF W Shape {
             appearance PBRAppearance {
@@ -628,7 +596,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0 -0.06 0.02
-        rotation 1 7.219652493566506e-15 -7.219679012879594e-15 1.5708
+        rotation 1 1.082947874034976e-14 -1.0829518519319391e-14 1.5708
         children [
           USE W
         ]

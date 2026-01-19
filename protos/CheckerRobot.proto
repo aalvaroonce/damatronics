@@ -16,9 +16,8 @@ PROTO CheckerRobot [
     controller IS controller
     children [
       # --- 1. CUERPO VISUAL ---
-      # Elevado a 0.035 para dejar 5mm de despeje del suelo
       Pose {
-        translation 0 0 0.035
+        translation 0 0 0.055
         children [
           Shape {
             appearance PBRAppearance {
@@ -32,9 +31,9 @@ PROTO CheckerRobot [
       }
 
       # --- 2. CONECTOR (Para Reinas) ---
-      # Altura: 0.035 (centro cuerpo) + 0.03 (mitad altura) = 0.065 (superficie)
+      # Altura: 0.055 (centro cuerpo) + 0.03 (mitad altura) = 0.085
       Connector {
-        translation 0 0 0.065
+        translation 0 0 0.085
         rotation 0 1 0 1.5708 # Apuntando hacia arriba
         name "upper_connector"
         type "symmetric" # Correcto según tu documento
@@ -50,7 +49,7 @@ PROTO CheckerRobot [
       # Z = 0.02 (Radio de la rueda) para que toque el suelo
       HingeJoint {
         jointParameters HingeJointParameters { axis 0 1 0 anchor 0 0.06 0.02 }
-        device [ RotationalMotor { name "left_motor" } ]
+        device [ RotationalMotor { name "left_motor" maxTorque 15 maxVelocity 15 } ]
         endPoint Solid {
           name "left_wheel"
           translation 0 0.06 0.02
@@ -64,7 +63,7 @@ PROTO CheckerRobot [
       # --- 5. RUEDA DERECHA ---
       HingeJoint {
         jointParameters HingeJointParameters { axis 0 1 0 anchor 0 -0.06 0.02 }
-        device [ RotationalMotor { name "right_motor" } ]
+        device [ RotationalMotor { name "right_motor"  maxTorque 15 maxVelocity 15 } ]
         endPoint Solid {
           name "right_wheel"
           translation 0 -0.06 0.02
@@ -77,9 +76,8 @@ PROTO CheckerRobot [
     ]
 
     # --- 6. FÍSICAS DEL ROBOT (BOUNDING OBJECT) ---
-    # IMPORTANTE: Esta 'Pose' debe ser IDÉNTICA a la del 'Cuerpo Visual' (Punto 1)
     boundingObject Pose {
-        translation 0 0 0.035
+        translation 0 0 0.055
         children [
             Cylinder { height 0.06 radius 0.08 }
         ]
