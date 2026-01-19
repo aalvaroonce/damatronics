@@ -1,11 +1,11 @@
 #VRML_SIM R2025a utf8
-# CheckerRobot.proto
+# CheckerRobot.proto - Alineación Visual/Física Correcta
 
 PROTO CheckerRobot [
   field SFVec3f    translation  0 0 0
   field SFRotation rotation     0 0 1 0
   field SFString   name         "checker_robot"
-  field SFColor    color        1 1 1  # Blanco por defecto. (0.1 0.1 0.1 para negro)
+  field SFColor    color        1 1 1 
   field SFString   controller   "robot_driver"
 ]
 {
@@ -15,79 +15,81 @@ PROTO CheckerRobot [
     name IS name
     controller IS controller
     children [
-      # CUERPO VISUAL
-      Solid {
-        translation 0 0 0.03
+      # --- 1. CUERPO VISUAL ---
+      # Elevado a 0.035 para dejar 5mm de despeje del suelo
+      Pose {
+        translation 0 0 0.035
         children [
           Shape {
             appearance PBRAppearance {
-              baseColor IS color # Vinculación directa, sin errores
+              baseColor IS color
               roughness 0.5
               metalness 0.1
             }
-            geometry Cylinder {
-              height 0.06
-              radius 0.08
-            }
+            geometry Cylinder { height 0.06 radius 0.08 }
           }
         ]
-        boundingObject Cylinder { height 0.06 radius 0.08 }
-        physics Physics { density -1 mass 1.0 }
       }
-      
-      # CONECTOR PARA REINA
+
+      # --- 2. CONECTOR (Para Reinas) ---
+      # Altura: 0.035 (centro cuerpo) + 0.03 (mitad altura) = 0.065 (superficie)
       Connector {
-        translation 0 0 0.061
-        rotation 0 1 0 1.5708
+        translation 0 0 0.065
+        rotation 0 1 0 1.5708 # Apuntando hacia arriba
         name "upper_connector"
-        type "magnetic"
+        type "symmetric" # Correcto según tu documento
         autoLock TRUE
       }
-      
-      # SENSORES Y MOTORES
+
+      # --- 3. SENSORES ---
       GPS { name "gps" }
       Compass { name "compass" }
       Receiver { name "receiver" channel 1 }
-      
-      # RUEDA IZQUIERDA
+
+      # --- 4. RUEDA IZQUIERDA ---
+      # Z = 0.02 (Radio de la rueda) para que toque el suelo
       HingeJoint {
         jointParameters HingeJointParameters { axis 0 1 0 anchor 0 0.06 0.02 }
         device [ RotationalMotor { name "left_motor" } ]
         endPoint Solid {
+          name "left_wheel"
           translation 0 0.06 0.02
           rotation 1 0 0 1.5708
           children [ DEF W Shape { geometry Cylinder { height 0.01 radius 0.02 } } ]
           boundingObject USE W
-          physics Physics {
-            density -1 
-            mass 1.0 
-            damping 
-            Damping {
-              linear 0.5
-              angular 0.5
-            }
-          }
+          physics Physics { mass 0.05 density -1 }
         }
       }
-      
-      # RUEDA DERECHA
+
+      # --- 5. RUEDA DERECHA ---
       HingeJoint {
         jointParameters HingeJointParameters { axis 0 1 0 anchor 0 -0.06 0.02 }
         device [ RotationalMotor { name "right_motor" } ]
         endPoint Solid {
+          name "right_wheel"
           translation 0 -0.06 0.02
           rotation 1 0 0 1.5708
           children [ USE W ]
           boundingObject USE W
-          physics Physics {
-            mass 0.05
-          }
+          physics Physics { mass 0.05 density -1 }
         }
       }
     ]
-    boundingObject Group {
-        children [ Transform { translation 0 0 0.03 children [ Cylinder { height 0.06 radius 0.08 } ] } ]
+
+    # --- 6. FÍSICAS DEL ROBOT (BOUNDING OBJECT) ---
+    # IMPORTANTE: Esta 'Pose' debe ser IDÉNTICA a la del 'Cuerpo Visual' (Punto 1)
+    boundingObject Pose {
+        translation 0 0 0.035
+        children [
+            Cylinder { height 0.06 radius 0.08 }
+        ]
     }
-    physics Physics { density -1 mass 1.0 }
+    
+    physics Physics { 
+      density -1 
+      mass 1.0 
+      # Damping para que no vibre ni salga volando
+      damping Damping { linear 0.5 angular 0.5 }
+    }
   }
 }
