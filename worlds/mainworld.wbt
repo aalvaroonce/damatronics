@@ -784,42 +784,213 @@ Robot {
     }
   ]
   name "game_supervisor"
-  controller "supervisor_controller"
+  controller "damas_controller"
   supervisor TRUE
 }
-
-# --- EQUIPO BLANCO (Filas 0, 1, 2 - Color 1 1 1) ---
-CheckerRobot { translation -0.7 -0.7 0.05 name "W_01" color 1 1 1 }
-CheckerRobot { translation -0.3 -0.7 0.05 name "W_02" color 1 1 1 }
-CheckerRobot { translation  0.1 -0.7 0.05 name "W_03" color 1 1 1 }
-CheckerRobot { translation  0.5 -0.7 0.05 name "W_04" color 1 1 1 }
-
-CheckerRobot { translation -0.5 -0.5 0.05 name "W_05" color 1 1 1 }
-CheckerRobot { translation -0.1 -0.5 0.05 name "W_06" color 1 1 1 }
-CheckerRobot { translation  0.3 -0.5 0.05 name "W_07" color 1 1 1 }
-CheckerRobot { translation  0.7 -0.5 0.05 name "W_08" color 1 1 1 }
-
-CheckerRobot { translation -0.7 -0.3 0.05 name "W_09" color 1 1 1 }
-CheckerRobot { translation -0.3 -0.3 0.05 name "W_10" color 1 1 1 }
-CheckerRobot { translation  0.1 -0.3 0.05 name "W_11" color 1 1 1 }
-CheckerRobot { translation  0.5 -0.3 0.05 name "W_12" color 1 1 1 }
-
-# --- EQUIPO NEGRO (Filas 5, 6, 7 - Color 0.1 0.1 0.1) ---
-CheckerRobot { translation -0.5 0.3 0.05 name "B_01" color 0.1 0.1 0.1 }
-CheckerRobot { translation -0.1 0.3 0.05 name "B_02" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.3 0.3 0.05 name "B_03" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.7 0.3 0.05 name "B_04" color 0.1 0.1 0.1 }
-
-CheckerRobot { translation -0.7 0.5 0.05 name "B_05" color 0.1 0.1 0.1 }
-CheckerRobot { translation -0.3 0.5 0.05 name "B_06" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.1 0.5 0.05 name "B_07" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.5 0.5 0.05 name "B_08" color 0.1 0.1 0.1 }
-
-CheckerRobot { translation -0.5 0.7 0.05 name "B_09" color 0.1 0.1 0.1 }
-CheckerRobot { translation -0.1 0.7 0.05 name "B_10" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.3 0.7 0.05 name "B_11" color 0.1 0.1 0.1 }
-CheckerRobot { translation  0.7 0.7 0.05 name "B_12" color 0.1 0.1 0.1 }
-
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.7 -0.7 0.0069460444112410535
+  rotation -0.7905928935756253 0.6087417281375378 0.06630524151108953 1.3390047443897073e-16
+  name "W_01"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.3 -0.7 0.0069460444112410535
+  rotation -0.26570731233939454 -0.9639051549586926 0.01692561412280791 2.5189234305377193e-16
+  name "W_02"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.1 -0.7 0.0069460444112410535
+  rotation -0.9750719645414889 -0.2216779547884422 0.009672038358841896 2.2839144461499765e-16
+  name "W_03"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.5 -0.7 0.0069460444112410535
+  rotation -0.670913283215803 -0.7411628087686704 0.023517170380957055 1.9424143690886106e-16
+  name "W_04"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.5 -0.5 0.0069460444112410535
+  rotation 0.10557763760207119 -0.9913953134025454 -0.07738665906882541 1.645218100797628e-16
+  name "W_05"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.1 -0.5 0.0069460444112410535
+  rotation -0.9385291511773409 -0.34507699229316735 -0.009214216203303743 1.0825888121345808e-16
+  name "W_06"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.3 -0.5 0.006946044411241047
+  rotation -0.9601338167528942 -0.16413021374401443 0.22628373088638937 6.934836894216128e-17
+  name "W_07"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.7 -0.5 0.0069460444112410535
+  rotation -0.17466350564133232 -0.9846260299475483 -0.0020593559211371975 1.1785937691137385e-16
+  name "W_08"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.7 -0.3 0.0069460444112410535
+  rotation 0.7439256720720776 -0.6681366643878486 -0.012961177908925894 2.2915790987941353e-16
+  name "W_09"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.3 -0.3 0.0069460444112410535
+  rotation 0.038863891108838915 -0.9992035147290723 0.009051746845177332 3.6488481878336166e-16
+  name "W_10"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.10000000000000002 -0.3 0.006946044411241047
+  rotation -0.14294212593221392 -0.989704063432226 -0.007308588079734031 4.623048965340867e-16
+  name "W_11"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.5 -0.3 0.006946044411241047
+  rotation 0.7406516636721717 -0.6701856341776291 -0.047815571120432485 1.8034583238979975e-16
+  name "W_12"
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.5 0.3 0.006946044411241047
+  rotation 0.9913266827327231 0.012193767258918395 -0.13085381210408156 8.557614802642503e-17
+  name "B_01"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.09999999999999999 0.3 0.0069460444112410535
+  rotation 0.24725434082967665 -0.9689505089183857 0.0004496750861512056 3.18534002804241e-16
+  name "B_02"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.3 0.3 0.0069460444112410535
+  rotation 0.38948189066347205 -0.9208273579782588 -0.019514959492310916 4.157407487660543e-16
+  name "B_03"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.7 0.3 0.006946044411241047
+  rotation -0.715193011422718 -0.6937093123422647 -0.08524286704309182 1.4781064468365133e-16
+  name "B_04"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.7 0.5 0.006946044411241047
+  rotation -0.9374101121295935 -0.34637939464737677 0.03582731696485183 1.961756318196927e-16
+  name "B_05"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.3 0.5 0.006946044411241047
+  rotation -0.4728106126200765 -0.8811283968290611 0.007929243045615396 4.397284973768109e-16
+  name "B_06"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.1 0.5 0.0069460444112410535
+  rotation -0.15652051661338753 -0.9876498267233695 -0.00701053866521727 1.8393649034739702e-16
+  name "B_07"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.5 0.5 0.0069460444112410535
+  rotation -0.9476775845167028 -0.31798912892241554 0.028108889906059448 1.4685733092653108e-16
+  name "B_08"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.5 0.7 0.0069460444112410535
+  rotation -0.9839429590725698 -0.1782856402538102 -0.008395461321699868 1.0495918010315879e-17
+  name "B_09"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation -0.1 0.7 0.0069460444112410535
+  rotation -0.5229714218088621 -0.8520572881267688 -0.022344344279342822 2.1639251371785541e-16
+  name "B_10"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.3 0.7 0.0069460444112410535
+  rotation -0.9650143600593433 -0.26160754674933784 -0.01757203354905645 3.0917978174400907e-16
+  name "B_11"
+  color 0.1 0.1 0.1
+  controller ""
+}
+CheckerRobot {
+  hidden translation_5 0 0.06 0.02
+  hidden translation_6 0 -0.06 0.02
+  translation 0.7 0.7 0.0069460444112410535
+  rotation -0.7905928935756253 0.6087417281375378 0.06630524151108953 1.3390047443897073e-16
+  name "B_12"
+  color 0.1 0.1 0.1
+  controller ""
+}
 Robot {
   translation -0.51 1.3 0.5
   rotation 0.5013998983075324 0.8651872014142286 -0.007017726570001851 0.0001916173753453163
@@ -864,7 +1035,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0 0.06 0.02
-        rotation 1 3.659261422628202e-15 -3.65927486387062e-15 1.5708
+        rotation 1 3.659254540621465e-15 -3.659284266024913e-15 1.5707999999999998
         children [
           DEF W Shape {
             appearance PBRAppearance {
@@ -882,6 +1053,8 @@ Robot {
           density -1
           mass 0.05
         }
+        linearVelocity -8.673617379884036e-21 1.2407709188295412e-26 -6.012683684699181e-12
+        angularVelocity -6.855884675076306e-16 9.273834512920003e-22 3.500697092388617e-30
       }
     }
     HingeJoint {
@@ -897,7 +1070,7 @@ Robot {
       ]
       endPoint Solid {
         translation 0 -0.06 0.02
-        rotation 1 3.609826246783253e-15 -3.609839506439797e-15 1.5708
+        rotation 1 3.609827459593337e-15 -3.6098452272205095e-15 1.5707999999999998
         children [
           USE W
         ]
@@ -907,6 +1080,8 @@ Robot {
           density -1
           mass 0.05
         }
+        linearVelocity -8.673617379884036e-21 8.271806125530275e-27 -6.012683684699181e-12
+        angularVelocity -6.85249654328729e-16 9.432011912209612e-22 -1.6940658944880187e-19
       }
     }
   ]
