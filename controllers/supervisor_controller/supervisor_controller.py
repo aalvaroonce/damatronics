@@ -411,7 +411,7 @@ class CheckersGame:
         crown_vrml = f"""
         DEF {crown_def} Solid {{
           translation {wx} {wy} {spawn_z}
-          rotation 1 0 0 1.5708
+          rotation 0 0 1 1.5708
           children [
             Shape {{
               appearance PBRAppearance {{
@@ -489,7 +489,7 @@ class CheckersGame:
                     [target_wx, target_wy, 0.135]
                 )
                 crown_node.getField("rotation").setSFRotation(
-                    [1, 0, 0, 1.5708]
+                    [0, 0, 1, 1.5708]
                 )
 
         print(f"✨ SNAP: {robot_name} fijado.")
