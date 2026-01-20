@@ -44,6 +44,10 @@ PROTO CheckerRobot [
       GPS { name "gps" }
       Compass { name "compass" }
       Receiver { name "receiver" channel 1 }
+      Emitter {
+        name "emitter"
+        channel 1
+      }
 
       # --- 4. RUEDA IZQUIERDA ---
       # Z = 0.02 (Radio de la rueda) para que toque el suelo
@@ -56,6 +60,7 @@ PROTO CheckerRobot [
           rotation 1 0 0 1.5708
           children [ DEF W Shape { geometry Cylinder { height 0.01 radius 0.02 } } ]
           boundingObject USE W
+          contactMaterial "high_grip_wheel"
           physics Physics { mass 0.05 density -1 }
         }
       }
@@ -70,8 +75,24 @@ PROTO CheckerRobot [
           rotation 1 0 0 1.5708
           children [ USE W ]
           boundingObject USE W
+          contactMaterial "high_grip_wheel"
           physics Physics { mass 0.05 density -1 }
         }
+      }
+
+      Solid {
+        name "front_slider"
+        translation 0.07 0 0.005 # Delante
+        physics Physics { mass 0.01 density -1 }
+        contactMaterial "frictionless_slider"
+        boundingObject Sphere { radius 0.005 }
+      }
+      Solid {
+        name "back_slider"
+        translation -0.07 0 0.005 # Detrás
+        physics Physics { mass 0.01 density -1 }
+        contactMaterial "frictionless_slider"
+        boundingObject Sphere { radius 0.005 }
       }
     ]
 

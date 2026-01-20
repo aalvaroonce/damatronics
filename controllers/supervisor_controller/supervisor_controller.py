@@ -1,8 +1,9 @@
 """
-supervisor_controller.py - Sistema con Click de Mouse
-Instrucciones: 
-1. Ctrl+Click en un robot para seleccionarlo
-2. Ctrl+Click en una casilla destino para moverlo
+supervisor_controller.py - DAMAS PRO: CORONACIÓN PERFECTA
+Mejoras:
+1. Corona SPAWNEA PLANA (rotación corregida para eje Z).
+2. Conector orientado hacia ABAJO para acoplarse.
+3. SNAP SINCRONIZADO: Al mover la ficha, la corona se mueve con ella.
 """
 
 from controller import Supervisor
@@ -14,30 +15,28 @@ class CheckersGame:
         self.timestep = int(self.supervisor.getBasicTimeStep())
         
         self.emitter = self.supervisor.getDevice('emitter')
+        self.receiver = self.supervisor.getDevice('receiver')
+        self.receiver.enable(self.timestep)
         
         # Estado del juego
         self.board = [[None for _ in range(8)] for _ in range(8)]
         self.current_team = "WHITE"
-        self.selected_piece = None  # Nombre del robot seleccionado
-        self.selected_grid = None   # (x, y) en el tablero
+        
+        self.selected_piece = None
+        self.selected_grid = None
         self.waiting_for_robot = False
+        self.moving_robot_name = None 
+        self.moving_robot_target = None 
         
-        # Referencias a nodos
+        self.forced_piece = None 
+        
         self.robots = {}
-        self.tiles = {}  # Casillas del tablero
-        
         self.init_robots()
-        self.init_tiles()
         self.init_board()
         
-        print("=== JUEGO DE DAMAS ROBÓTICAS ===")
-        print("📌 CONTROLES:")
-        print("  1. Ctrl+Click en un robot para seleccionarlo")
-        print("  2. Ctrl+Click en una casilla negra para moverlo")
-        print(f"\n🎮 Turno inicial: {self.current_team}\n")
-    
+        print("=== DAMAS 2.0: CORONACIÓN & SNAP PERFECTOS ===")
+
     def init_robots(self):
-        """Inicializa referencias a robots"""
         white_names = [f"W_{i:02d}" for i in range(1, 13)]
         black_names = [f"B_{i:02d}" for i in range(1, 13)]
         
@@ -48,286 +47,355 @@ class CheckersGame:
                     'node': robot_node,
                     'team': 'WHITE' if name.startswith('W') else 'BLACK',
                     'is_king': False,
-                    'alive': True
+                    'alive': True,
+                    'trans_field': robot_node.getField("translation"),
+                    'rot_field': robot_node.getField("rotation")
                 }
     
-    def init_tiles(self):
-        """Inicializa referencias a las casillas del tablero"""
-        # Casillas negras del tablero
-        tile_coords = [
-            (0, 0), (2, 0), (4, 0), (6, 0),
-            (1, 1), (3, 1), (5, 1), (7, 1),
-            (0, 2), (2, 2), (4, 2), (6, 2),
-            (1, 3), (3, 3), (5, 3), (7, 3),
-            (0, 4), (2, 4), (4, 4), (6, 4),
-            (1, 5), (3, 5), (5, 5), (7, 5),
-            (0, 6), (2, 6), (4, 6), (6, 6),
-            (1, 7), (3, 7), (5, 7), (7, 7)
-        ]
-        
-        for x, y in tile_coords:
-            tile_name = f"TILE_{x}_{y}"
-            tile_node = self.supervisor.getFromDef(tile_name)
-            if tile_node:
-                self.tiles[(x, y)] = tile_node
-    
     def init_board(self):
-        """Escanea posiciones iniciales"""
         for name, robot_info in self.robots.items():
             if robot_info['alive']:
-                pos = robot_info['node'].getPosition()
+                pos = robot_info['trans_field'].getSFVec3f()
                 x, y = self.world_to_grid(pos[0], pos[1])
                 if 0 <= x < 8 and 0 <= y < 8:
                     self.board[y][x] = name
         self.print_board()
     
     def world_to_grid(self, world_x, world_y):
-        """Convierte coordenadas mundo a grid (0-7)"""
         grid_x = int(round((world_x + 0.7) / 0.2))
         grid_y = int(round((world_y + 0.7) / 0.2))
         return grid_x, grid_y
     
     def grid_to_world(self, grid_x, grid_y):
-        """Convierte grid (0-7) a coordenadas mundo"""
         world_x = -0.7 + grid_x * 0.2
         world_y = -0.7 + grid_y * 0.2
         return world_x, world_y
     
     def print_board(self):
-        """Imprime tablero en consola"""
         print("\n=== TABLERO ===")
         for y in range(7, -1, -1):
             row = []
             for x in range(8):
                 piece = self.board[y][x]
                 if piece:
-                    symbol = piece[0] + piece[-2:]
+                    team_char = piece[0] 
+                    symbol = team_char + piece[-2:]
+                    if self.robots[piece]['is_king']:
+                        symbol = f"*{symbol}*"
                     if piece == self.selected_piece:
-                        symbol = f"[{symbol}]"  # Marcar seleccionado
-                    row.append(symbol)
+                        symbol = f"[{symbol}]"
+                    row.append(f"{symbol:^6}")
                 else:
-                    row.append("  .")
+                    row.append("  .   ")
             print(f"{y}: " + " ".join(row))
-        print("   " + " ".join([f"  {i}" for i in range(8)]))
-        print()
-    
+        print("   " + " ".join([f"  {i}   " for i in range(8)]))
+
     def check_user_selection(self):
-        """Detecta clicks del usuario en robots o casillas"""
-        # Obtener el nodo seleccionado por el usuario (Ctrl+Click)
         selected_node = self.supervisor.getSelected()
-        
-        if selected_node is None:
-            return
+        if selected_node is None: return
         
         node_name = selected_node.getDef()
+        if not node_name: return
         
-        if not node_name:
-            return
-        
-        # ¿Es un robot?
         if node_name in self.robots:
             self.handle_robot_click(node_name)
-        
-        # ¿Es una casilla?
         elif node_name.startswith("TILE_"):
             parts = node_name.split("_")
             if len(parts) == 3:
-                try:
-                    x, y = int(parts[1]), int(parts[2])
-                    self.handle_tile_click(x, y)
-                except ValueError:
-                    pass
-    
+                self.handle_tile_click(int(parts[1]), int(parts[2]))
+
     def handle_robot_click(self, robot_name):
-        """Maneja click en un robot"""
-        if self.waiting_for_robot:
-            print("⏳ Esperando movimiento actual...")
+        if self.waiting_for_robot: return
+        
+        if self.forced_piece and robot_name != self.forced_piece:
+            print(f"⚠️ ¡COMBO OBLIGATORIO! Debes seguir usando {self.forced_piece}")
             return
         
         robot_info = self.robots[robot_name]
-        
-        # Verificar que sea del equipo correcto
         if robot_info['team'] != self.current_team:
-            print(f"❌ No puedes mover piezas {robot_info['team']}. Turno de {self.current_team}")
+            print(f"❌ Turno de {self.current_team}")
             return
+        if not robot_info['alive']: return
         
-        if not robot_info['alive']:
-            print(f"❌ {robot_name} está fuera de juego")
-            return
-        
-        # Seleccionar pieza
         self.selected_piece = robot_name
-        
-        # Encontrar posición en el tablero
         for y in range(8):
             for x in range(8):
                 if self.board[y][x] == robot_name:
                     self.selected_grid = (x, y)
                     break
-        
-        print(f"✅ Seleccionado: {robot_name} ({self.current_team}) en {self.selected_grid}")
-        self.print_board()
-    
+        print(f"✅ Seleccionado: {robot_name}")
+
     def handle_tile_click(self, x, y):
-        """Maneja click en una casilla"""
-        if self.waiting_for_robot:
-            print("⏳ Esperando movimiento actual...")
-            return
+        if self.waiting_for_robot or self.selected_piece is None: return
         
-        if self.selected_piece is None:
-            print("❌ Primero selecciona una pieza")
-            return
+        valid, captured_piece = self.validate_move(self.selected_grid, (x, y))
         
-        print(f"🎯 Destino seleccionado: ({x}, {y})")
-        
-        # Validar y ejecutar movimiento
-        if self.validate_move(self.selected_grid, (x, y)):
-            self.execute_move(self.selected_grid, (x, y))
+        if valid:
+            self.execute_move(self.selected_grid, (x, y), captured_piece)
         else:
             print("❌ Movimiento inválido")
-        
-        self.selected_piece = None
-        self.selected_grid = None
-    
+            if not self.forced_piece:
+                self.selected_piece = None
+
     def validate_move(self, origin, destination):
-        """Valida movimiento según reglas"""
-        if origin is None or destination is None:
-            return False
-        
         ox, oy = origin
         dx, dy = destination
         
-        # Destino ocupado
-        if self.board[dy][dx] is not None:
-            print("❌ Casilla ocupada")
-            return False
+        if self.board[dy][dx] is not None: return False, None
         
         piece_name = self.board[oy][ox]
-        robot_info = self.robots[piece_name]
-        team = robot_info['team']
-        is_king = robot_info['is_king']
+        info = self.robots[piece_name]
+        team = info['team']
+        is_king = info['is_king']
         
-        delta_x = dx - ox
-        delta_y = dy - oy
+        diff_x = dx - ox
+        diff_y = dy - oy
         
-        # Movimiento diagonal
-        if abs(delta_x) != abs(delta_y):
-            print("❌ Solo movimientos diagonales")
-            return False
+        if abs(diff_x) != abs(diff_y): return False, None
         
-        # Movimiento simple (1 casilla)
-        if abs(delta_x) == 1:
-            if not is_king:
-                if team == "WHITE" and delta_y <= 0:
-                    print("❌ Blancas avanzan hacia arriba")
-                    return False
-                if team == "BLACK" and delta_y >= 0:
-                    print("❌ Negras avanzan hacia abajo")
-                    return False
-            return True
+        direction_x = 1 if diff_x > 0 else -1
+        direction_y = 1 if diff_y > 0 else -1
         
-        # Captura (2 casillas)
-        elif abs(delta_x) == 2:
-            mid_x = (ox + dx) // 2
-            mid_y = (oy + dy) // 2
-            mid_piece = self.board[mid_y][mid_x]
+        if not is_king:
+            if abs(diff_x) == 1:
+                if self.forced_piece: return False, None
+                if team == "WHITE" and diff_y < 0: return False, None
+                if team == "BLACK" and diff_y > 0: return False, None
+                return True, None
             
-            if mid_piece and self.robots[mid_piece]['team'] != team:
-                print(f"🎯 Captura: {mid_piece}")
-                return True
+            if abs(diff_x) == 2:
+                mid_x = ox + direction_x
+                mid_y = oy + direction_y
+                victim = self.board[mid_y][mid_x]
+                if victim and self.robots[victim]['team'] != team:
+                    return True, victim
+            return False, None
+
+        else: # Flying King logic
+            steps = abs(diff_x)
+            victim = None
+            for i in range(1, steps):
+                check_x = ox + (i * direction_x)
+                check_y = oy + (i * direction_y)
+                found_piece = self.board[check_y][check_x]
+                
+                if found_piece:
+                    if victim is None:
+                        if self.robots[found_piece]['team'] != team:
+                            victim = found_piece
+                        else:
+                            return False, None
+                    else:
+                        return False, None
+            
+            if victim: return True, victim
             else:
-                print("❌ No hay enemigo para capturar")
-                return False
+                if self.forced_piece: return False, None
+                return True, None
+
+    def can_capture_more(self, piece_name, current_x, current_y):
+        info = self.robots[piece_name]
+        is_king = info['is_king']
+        directions = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
         
-        print("❌ Movimiento demasiado largo")
+        if not is_king:
+            for dx, dy in directions:
+                dest_x, dest_y = current_x + dx*2, current_y + dy*2
+                if 0 <= dest_x < 8 and 0 <= dest_y < 8:
+                    valid, _ = self.validate_move((current_x, current_y), (dest_x, dest_y))
+                    if valid: return True
+        else:
+            for dx, dy in directions:
+                for dist in range(2, 8):
+                    dest_x, dest_y = current_x + dx*dist, current_y + dy*dist
+                    if 0 <= dest_x < 8 and 0 <= dest_y < 8:
+                        valid, victim = self.validate_move((current_x, current_y), (dest_x, dest_y))
+                        if valid and victim: return True
+                    else:
+                        break
         return False
-    
-    def execute_move(self, origin, destination):
-        """Ejecuta movimiento validado"""
+
+    def execute_move(self, origin, destination, captured_piece):
         ox, oy = origin
         dx, dy = destination
+        piece = self.board[oy][ox]
+        robot_info = self.robots[piece]
         
-        piece_name = self.board[oy][ox]
-        
-        # Captura
-        if abs(dx - ox) == 2:
-            mid_x = (ox + dx) // 2
-            mid_y = (oy + dy) // 2
-            captured = self.board[mid_y][mid_x]
-            self.capture_piece(captured)
-        
-        # Mover
-        world_x, world_y = self.grid_to_world(dx, dy)
-        message = f"{piece_name} MOVE {world_x:.3f} {world_y:.3f}"
-        self.emitter.send(message.encode('utf-8'))
-        print(f"📡 {message}")
-        
-        # Actualizar tablero
-        self.board[dy][dx] = piece_name
+        if captured_piece:
+            self.capture_piece(captured_piece)
+            
+        self.board[dy][dx] = piece
         self.board[oy][ox] = None
         
-        # Coronación
-        if (self.robots[piece_name]['team'] == "WHITE" and dy == 7) or \
-           (self.robots[piece_name]['team'] == "BLACK" and dy == 0):
-            self.crown_piece(piece_name)
+        wx, wy = self.grid_to_world(dx, dy)
+        msg = f"{piece} MOVE {wx:.4f} {wy:.4f}"
+        self.emitter.send(msg.encode('utf-8'))
         
         self.waiting_for_robot = True
+        self.moving_robot_name = piece
+        self.moving_robot_target = (dx, dy)
+        
+        will_promote = False
+        if not robot_info['is_king']:
+            if (robot_info['team'] == "WHITE" and dy == 7) or \
+               (robot_info['team'] == "BLACK" and dy == 0):
+                will_promote = True
+
+        if captured_piece and not will_promote and self.can_capture_more(piece, dx, dy):
+            self.forced_piece = piece
+            print(f"🔥 ¡COMBO! {piece} puede seguir comiendo. Turno mantenido.")
+        else:
+            self.forced_piece = None
+
+        self.selected_piece = None
         self.print_board()
-    
+
+    def promote_king(self, piece_name):
+        """
+        CORONACIÓN: Spawnea cilindro plano y conector hacia abajo.
+        """
+        self.robots[piece_name]['is_king'] = True
+        
+        pos = self.robots[piece_name]['trans_field'].getSFVec3f()
+        wx, wy = pos[0], pos[1]
+        
+        # Calculamos la altura perfecta.
+        # Robot (0.05) + Connector (0.085) = 0.135.
+        # Ponemos la corona JUSTO ahí.
+        spawn_z = 0.135 
+        
+        print(f"👑 INVOCANDO CORONA para {piece_name}...")
+        
+        root_children = self.supervisor.getRoot().getField("children")
+        crown_def = f"CROWN_{piece_name}"
+        
+        # 1. rotation 1 0 0 1.5708 -> Rota el cilindro para que el eje Y (su altura) se tumbe.
+        #    Ahora la "cara" redonda mira hacia arriba (Eje Z). ¡CORONA PLANA!
+        # 2. Connector rotation: Apuntando hacia abajo (-Z) para buscar al del robot.
+        
+        crown_vrml = f"""
+        DEF {crown_def} Solid {{
+          translation {wx} {wy} {spawn_z}
+          rotation 1 0 0 1.5708 
+          children [
+            Shape {{
+              appearance PBRAppearance {{
+                baseColor 1 0.84 0
+                metalness 0.8
+                roughness 0.2
+              }}
+              geometry Cylinder {{
+                height 0.02
+                radius 0.06
+              }}
+            }}
+            Connector {{
+              name "crown_connector"
+              type "symmetric"
+              autoLock TRUE
+              distanceTolerance 0.05
+              axisTolerance 0.5
+              rotation 0 0 1 -1.5708
+            }}
+          ]
+          boundingObject Cylinder {{ height 0.02 radius 0.06 }}
+          physics Physics {{ mass 0.01 density -1 }}
+        }}
+        """
+        root_children.importMFNodeFromString(-1, crown_vrml)
+        
+        # Forzar el acople
+        self.emitter.send(f"{piece_name} LOCK".encode('utf-8'))
+
     def capture_piece(self, piece_name):
-        """Captura una pieza"""
-        print(f"💀 {piece_name} capturado")
+        robot = self.robots[piece_name]
+        node = robot['node']
+        team = robot['team']
+        jump_dir = 1.0 if team == "WHITE" else -1.0
         
-        cemetery_x = 1.5 if self.robots[piece_name]['team'] == "WHITE" else -1.5
-        message = f"{piece_name} DIE {cemetery_x:.3f} 0.0"
-        self.emitter.send(message.encode('utf-8'))
-        
-        self.robots[piece_name]['alive'] = False
-        
+        node.setVelocity([
+            jump_dir * 40.0,   0.0,   50.0,
+            0.0,              50.0,    0.0 
+        ])
+        robot['alive'] = False
         for y in range(8):
             for x in range(8):
                 if self.board[y][x] == piece_name:
                     self.board[y][x] = None
-    
-    def crown_piece(self, piece_name):
-        """Corona una pieza"""
-        print(f"👑 ¡{piece_name} es ahora Reina!")
-        self.robots[piece_name]['is_king'] = True
+        print(f"🚀☄️ ¡YEET! {piece_name} eliminada.")
+
+    def snap_robot_to_grid(self, robot_name, grid_x, grid_y):
+        """
+        SNAP MEJORADO: Teletransporta Robot Y Corona juntos.
+        """
+        robot = self.robots[robot_name]
+        node = robot['node']
+        target_wx, target_wy = self.grid_to_world(grid_x, grid_y)
         
-        message = f"{piece_name} LOCK"
-        self.emitter.send(message.encode('utf-8'))
-    
+        # 1. Snap Robot
+        node.resetPhysics()
+        robot['trans_field'].setSFVec3f([target_wx, target_wy, 0.05])
+        robot['rot_field'].setSFRotation([0, 0, 1, 0])
+        
+        # 2. Snap Corona (Si existe)
+        # Esto es crucial para que no se quede atrás al mover la ficha de nuevo
+        if robot['is_king']:
+            crown_node = self.supervisor.getFromDef(f"CROWN_{robot_name}")
+            if crown_node:
+                crown_node.resetPhysics()
+                # Altura de la corona: Robot (0.05) + Conector (0.085) = 0.135
+                crown_node.getField("translation").setSFVec3f([target_wx, target_wy, 0.135])
+                # Mantenemos la rotación plana (1 0 0 1.5708)
+                crown_node.getField("rotation").setSFRotation([1, 0, 0, 1.5708])
+                
+        print(f"✨ SNAP: {robot_name} fijado.")
+
+    def process_robot_messages(self):
+        while self.receiver.getQueueLength() > 0:
+            msg = self.receiver.getString()
+            self.receiver.nextPacket()
+            parts = msg.split()
+            sender = parts[0]
+            command = parts[1]
+            
+            if command == "ARRIVED":
+                if sender == self.moving_robot_name:
+                    tx, ty = self.moving_robot_target
+                    
+                    self.snap_robot_to_grid(sender, tx, ty)
+                    
+                    robot_info = self.robots[sender]
+                    if not robot_info['is_king']:
+                        if (robot_info['team'] == "WHITE" and ty == 7) or \
+                           (robot_info['team'] == "BLACK" and ty == 0):
+                            self.promote_king(sender)
+                    
+                    if self.forced_piece:
+                        self.waiting_for_robot = False
+                        self.selected_piece = self.forced_piece 
+                        print(f"⚔️ ¡Sigue saltando con {self.forced_piece}!")
+                    else:
+                        self.moving_robot_name = None
+                        self.moving_robot_target = None
+                        self.waiting_for_robot = False
+                        self.switch_turn()
+
     def switch_turn(self):
-        """Cambia turno"""
         self.current_team = "BLACK" if self.current_team == "WHITE" else "WHITE"
-        print(f"\n🔄 Turno: {self.current_team}\n")
-        self.waiting_for_robot = False
-    
+        print(f"\n🔄 Turno: {self.current_team}")
+
     def run(self):
-        """Loop principal"""
-        step_counter = 0
-        # Inicializamos con Strings vacíos o None
-        last_selected_name = None 
-        
+        last_selected = None
         while self.supervisor.step(self.timestep) != -1:
-            step_counter += 1
+            sel = self.supervisor.getSelected()
+            sel_name = sel.getDef() if sel else None
             
-            # Detectar selección del usuario
-            current_selected_node = self.supervisor.getSelected()
-            current_selected_name = None
-
-            # Si hay algo seleccionado, obtenemos su nombre (DEF o Name)
-            if current_selected_node:
-                current_selected_name = current_selected_node.getDef()
-
-            # Comparamos NOMBRES (texto), no objetos
-            if current_selected_name != last_selected_name:
+            if sel_name != last_selected:
                 self.check_user_selection()
-                last_selected_name = current_selected_name
+                last_selected = sel_name
             
-            # Simular fin de movimiento (5 seg)
-            if self.waiting_for_robot and step_counter % 300 == 0:
-                self.switch_turn()
+            if self.waiting_for_robot:
+                self.process_robot_messages()
 
 def main():
     game = CheckersGame()
